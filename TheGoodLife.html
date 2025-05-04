@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Good Life House and Pet Sitting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for calendar */
+        .calendar-day {
+            transition: all 0.3s ease;
+        }
+        .calendar-day:hover:not(.disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .booked {
+            background-color: #FECACA;
+            color: #B91C1C;
+        }
+        .available {
+            background-color: #D1FAE5;
+            color: #065F46;
+        }
+        
+        /* Gallery animation */
+        .gallery-item {
+            transition: all 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        /* Modal for gallery */
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        
+        /* Service cards */
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-green-700 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-paw text-2xl"></i>
+                    <a href="#home" class="text-2xl font-bold">The Good Life</a>
+                    <span class="hidden md:inline text-sm">House & Pet Sitting</span>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="hover:text-green-200 transition">Home</a>
+                    <a href="#services" class="hover:text-green-200 transition">Services</a>
+                    <a href="#calendar" class="hover:text-green-200 transition">Availability</a>
+                    <a href="#gallery" class="hover:text-green-200 transition">Gallery</a>
+                    <a href="#contact" class="hover:text-green-200 transition">Contact</a>
+                </div>
+                <button class="md:hidden text-xl" id="mobile-menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <!-- Mobile menu -->
+            <div class="md:hidden hidden mt-2 pb-2" id="mobile-menu">
+                <a href="#home" class="block py-1 hover:bg-green-600 px-2 rounded">Home</a>
+                <a href="#services" class="block py-1 hover:bg-green-600 px-2 rounded">Services</a>
+                <a href="#calendar" class="block py-1 hover:bg-green-600 px-2 rounded">Availability</a>
+                <a href="#gallery" class="block py-1 hover:bg-green-600 px-2 rounded">Gallery</a>
+                <a href="#contact" class="block py-1 hover:bg-green-600 px-2 rounded">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-gradient-to-r from-green-600 to-green-800 text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">The Good Life House & Pet Sitting</h1>
+            <p class="text-xl md:text-2xl mb-8">Loving care for your home and furry family members</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#contact" class="bg-white text-green-700 px-6 py-3 rounded-full font-semibold hover:bg-green-100 transition">Book Now</a>
+                <a href="#services" class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-green-600 transition">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h2 class="text-3xl font-bold text-green-700 mb-4">About Us</h2>
+                    <p class="text-gray-700 mb-4">At The Good Life, we understand that your pets are family. That's why we provide personalized, loving care for your furry friends and peace of mind for you while you're away.</p>
+                    <p class="text-gray-700 mb-6">With over 10 years of experience in pet care and house sitting, we treat every home and pet with the same attention and care we'd want for our own.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm flex items-center">
+                            <i class="fas fa-check-circle mr-1"></i> Bonded & Insured
+                        </span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm flex items-center">
+                            <i class="fas fa-check-circle mr-1"></i> Certified Pet First Aid
+                        </span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm flex items-center">
+                            <i class="fas fa-check-circle mr-1"></i> References Available
+                        </span>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-green-100 rounded-xl overflow-hidden shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Happy dog with sitter" class="w-full h-auto object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-green-700 mb-12">Our Services</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551290464-66719418ca54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Pet sitting" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-home text-green-700 text-xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">In-Home Pet Sitting</h3>
+                        <p class="text-gray-600 mb-4">Your pets stay in the comfort of their own home while receiving personalized care, including feeding, playtime, and lots of love.</p>
+                        <ul class="text-gray-700 space-y-1">
+                            <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i> Daily visits or overnight stays</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i> Medication administration</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i> Litter box/yard cleanup</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1583511655826-05700d52efe8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dog training" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-graduation-cap text-green-700 text-xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Pet Training</h3>
+                        <p class="text-gray-600 mb-4">Professional training services to help your pet learn good manners and basic commands in a positive, reward-based environment.</p>
+                        <ul class="text-gray-700 space-y-1">
+                            <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i> Basic obedience training</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i> Leash walking skills</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i> Behavioral modification</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i> Puppy socialization</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1575425186775-b8de9a427e67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dog walking" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-medkit text-green-700 text-xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Medical Care & Exercise</h3>
+                        <p class="text-gray-600 mb-4">Specialized care for pets with medical needs and customized exercise programs to keep your pet healthy and happy.</p>
+                        <ul class="text-gray-700 space-y-1">
+                            <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i> Medication administration</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i> Subcutaneous fluids</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i> Physical therapy exercises</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i> Senior pet care</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Services -->
+            <div class="mt-12 bg-white rounded-xl shadow-md p-8">
+                <h3 class="text-2xl font-bold text-green-700 mb-6">Additional Services</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="flex items-start">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-home text-green-700 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-1">House Sitting</h4>
+                            <p class="text-gray-600">We'll take care of your home while you're away - mail collection, plant care, light cleaning, and security checks.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-car text-green-700 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-1">Transportation</h4>
+                            <p class="text-gray-600">Need your pet taken to the vet or groomer? We provide safe, reliable transportation services.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-camera text-green-700 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-1">Photo Updates</h4>
+                            <p class="text-gray-600">Daily photo and text updates so you can see how your pets are doing while you're away.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section id="calendar" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-green-700 mb-4">Availability Calendar</h2>
+            <p class="text-center text-gray-600 mb-12">Check our availability for house and pet sitting services. Booked dates are marked in red.</p>
+            
+            <div class="max-w-4xl mx-auto bg-gray-50 rounded-xl shadow-md p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800" id="current-month">June 2023</h3>
+                    <div class="flex space-x-2">
+                        <button id="prev-month" class="bg-green-100 text-green-700 p-2 rounded-full hover:bg-green-200 transition">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button id="next-month" class="bg-green-100 text-green-700 p-2 rounded-full hover:bg-green-200 transition">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-7 gap-2 mb-4">
+                    <div class="text-center font-semibold text-gray-600 py-2">Sun</div>
+                    <div class="text-center font-semibold text-gray-600 py-2">Mon</div>
+                    <div class="text-center font-semibold text-gray-600 py-2">Tue</div>
+                    <div class="text-center font-semibold text-gray-600 py-2">Wed</div>
+                    <div class="text-center font-semibold text-gray-600 py-2">Thu</div>
+                    <div class="text-center font-semibold text-gray-600 py-2">Fri</div>
+                    <div class="text-center font-semibold text-gray-600 py-2">Sat</div>
+                </div>
+                
+                <div class="grid grid-cols-7 gap-2" id="calendar-days">
+                    <!-- Calendar days will be populated by JavaScript -->
+                </div>
+                
+                <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 rounded-full bg-green-200 mr-2"></div>
+                        <span class="text-sm text-gray-600">Available</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 rounded-full bg-red-200 mr-2"></div>
+                        <span class="text-sm text-gray-600">Booked</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 rounded-full bg-gray-200 mr-2"></div>
+                        <span class="text-sm text-gray-600">Past Date</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-green-50 rounded-xl shadow-md p-8 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold text-green-700 mb-4">Booking Information</h3>
+                <p class="text-gray-700 mb-6">To reserve your dates, please contact us at least 2 weeks in advance. We recommend booking early for holidays and summer months as these dates fill up quickly.</p>
+                <div class="bg-white rounded-lg p-4">
+                    <h4 class="font-bold text-green-700 mb-2">Holiday Periods (Require 50% deposit):</h4>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                        <li>New Year's Eve/Day</li>
+                        <li>Easter Weekend</li>
+                        <li>Memorial Day Weekend</li>
+                        <li>July 4th Week</li>
+                        <li>Labor Day Weekend</li>
+                        <li>Thanksgiving Week</li>
+                        <li>Christmas Week</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-green-700 mb-12">Our Happy Clients</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item bg-white rounded-xl overflow-hidden shadow-md cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                    <img src="https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Happy dog" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <p class="text-gray-600 italic">"Max loves his time with The Good Life team!" - Sarah J.</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item bg-white rounded-xl overflow-hidden shadow-md cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1551290464-66719418ca54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                    <img src="https://images.unsplash.com/photo-1551290464-66719418ca54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Cat being petted" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <p class="text-gray-600 italic">"My shy cat warmed up immediately - so impressed!" - Michael T.</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item bg-white rounded-xl overflow-hidden shadow-md cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1583511655826-05700d52efe8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                    <img src="https://images.unsplash.com/photo-1583511655826-05700d52efe8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dog training" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <p class="text-gray-600 italic">"Our puppy learned so much from their training!" - Lisa & Rob</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item bg-white rounded-xl overflow-hidden shadow-md cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1575425186775-b8de9a427e67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                    <img src="https://images.unsplash.com/photo-1575425186775-b8de9a427e67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dog walking" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <p class="text-gray-600 italic">"Daily walks keep our senior dog active and happy." - David K.</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item bg-white rounded-xl overflow-hidden shadow-md cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1561037404-61cd46aa615b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                    <img src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dog with sitter" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <p class="text-gray-600 italic">"We never worry when we travel thanks to The Good Life!" - Emma S.</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item bg-white rounded-xl overflow-hidden shadow-md cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                    <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Happy dog" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <p class="text-gray-600 italic">"The photo updates give us peace of mind." - The Chen Family</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="mt-16 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold text-center text-green-700 mb-8">What Our Clients Say</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-700 text-xl font-bold mr-4">S</div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Sarah Johnson</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">"I've used The Good Life several times now and they're absolutely wonderful. My dog Max gets so excited when he sees them arrive! The daily photo updates are such a nice touch and really put my mind at ease when I'm traveling for work."</p>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-700 text-xl font-bold mr-4">M</div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Michael Thompson</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">"My cat Whiskers is very shy and usually hides from strangers, but he warmed up to The Good Life sitter immediately. They clearly have a way with animals. The house was spotless when I returned too - they even watered all my plants!"</p>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-700 text-xl font-bold mr-4">L</div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Lisa & Rob Chen</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">"We were nervous first-time puppy owners and The Good Life's training services were a game-changer. Our Labrador, Buddy, learned basic commands so quickly with their positive reinforcement methods. We continue to use their sitting services whenever we travel."</p>
+                    </div>
+                    
+                    <!-- Testimonial 4 -->
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-700 text-xl font-bold mr-4">D</div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">David Kim</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">"As a senior dog owner, I appreciate that The Good Life team has experience with older pets. They administer my dog's medication perfectly and take her on gentle walks that are just the right length. I trust them completely with my precious girl."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-green-700 text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">Contact Us</h2>
+            <p class="text-center text-green-100 max-w-2xl mx-auto mb-12">Ready to book our services or have questions? Fill out the form below and we'll get back to you within 24 hours.</p>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <form class="space-y-4">
+                            <div>
+                                <label for="name" class="block mb-1 font-medium">Your Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 rounded-lg bg-green-600 border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 placeholder-green-300" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label for="email" class="block mb-1 font-medium">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 rounded-lg bg-green-600 border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 placeholder-green-300" placeholder="john@example.com">
+                            </div>
+                            <div>
+                                <label for="phone" class="block mb-1 font-medium">Phone Number</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 rounded-lg bg-green-600 border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 placeholder-green-300" placeholder="(123) 456-7890">
+                            </div>
+                            <div>
+                                <label for="service" class="block mb-1 font-medium">Service Needed</label>
+                                <select id="service" class="w-full px-4 py-2 rounded-lg bg-green-600 border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-300">
+                                    <option value="">Select a service</option>
+                                    <option value="pet-sitting">Pet Sitting</option>
+                                    <option value="house-sitting">House Sitting</option>
+                                    <option value="dog-walking">Dog Walking</option>
+                                    <option value="pet-training">Pet Training</option>
+                                    <option value="medical-care">Medical Care</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="block mb-1 font-medium">Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 rounded-lg bg-green-600 border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 placeholder-green-300" placeholder="Tell us about your pets and needs..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-white text-green-700 px-6 py-3 rounded-lg font-semibold hover:bg-green-100 transition">Send Message</button>
+                        </form>
+                    </div>
+                    <div>
+                        <div class="bg-green-800 rounded-xl p-6 h-full">
+                            <h3 class="text-xl font-bold mb-4">Contact Information</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-green-700 p-2 rounded-full mr-4">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Location</h4>
+                                        <p class="text-green-200">Serving the Greater Portland Area</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-green-700 p-2 rounded-full mr-4">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Phone</h4>
+                                        <p class="text-green-200">(503) 555-1234</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-green-700 p-2 rounded-full mr-4">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Email</h4>
+                                        <p class="text-green-200">hello@goodlifepets.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-green-700 p-2 rounded-full mr-4">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Hours</h4>
+                                        <p class="text-green-200">Monday - Friday: 8am - 6pm</p>
+                                        <p class="text-green-200">Saturday: 9am - 4pm</p>
+                                        <p class="text-green-200">Sunday: Emergency only</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-xl font-bold mt-8 mb-4">Follow Us</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-green-700 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600 transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-green-700 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600 transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="bg-green-700 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600 transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-green-700 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600 transition">
+                                    <i class="fab fa-yelp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-paw mr-2"></i> The Good Life
+                    </h3>
+                    <p class="text-green-200">Providing loving care for your home and pets since 2012.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-green-200 hover:text-white transition">Home</a></li>
+                        <li><a href="#services" class="text-green-200 hover:text-white transition">Services</a></li>
+                        <li><a href="#calendar" class="text-green-200 hover:text-white transition">Availability</a></li>
+                        <li><a href="#gallery" class="text-green-200 hover:text-white transition">Gallery</a></li>
+                        <li><a href="#contact" class="text-green-200 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-green-200 hover:text-white transition">Pet Sitting</a></li>
+                        <li><a href="#" class="text-green-200 hover:text-white transition">House Sitting</a></li>
+                        <li><a href="#" class="text-green-200 hover:text-white transition">Dog Walking</a></li>
+                        <li><a href="#" class="text-green-200 hover:text-white transition">Pet Training</a></li>
+                        <li><a href="#" class="text-green-200 hover:text-white transition">Medical Care</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Newsletter</h4>
+                    <p class="text-green-200 mb-2">Subscribe for pet care tips and special offers!</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-3 py-2 text-gray-800 rounded-l focus:outline-none w-full">
+                        <button type="submit" class="bg-green-600 px-4 py-2 rounded-r hover:bg-green-500 transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-green-800 mt-8 pt-6 text-center text-green-300">
+                <p>&copy; 2023 The Good Life House and Pet Sitting. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Modal -->
+    <div id="image-modal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="relative max-w-4xl w-full p-4">
+            <button onclick="closeModal()" class="absolute -top-12 right-0 text-white text-3xl hover:text-gray-300">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="modal-image" src="" alt="" class="w-full max-h-screen object-contain">
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Calendar functionality
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+
+        // Sample booked dates (in real app, this would come from a database)
+        const bookedDates = [
+            '2023-06-10', '2023-06-11', '2023-06-12', '2023-06-15', '2023-06-16',
+            '2023-06-20', '2023-06-21', '2023-06-22', '2023-06-25', '2023-06-30',
+            '2023-07-04', '2023-07-05', '2023-07-06', '2023-07-12', '2023-07-13',
+            '2023-07-19', '2023-07-20', '2023-07-26', '2023-07-27', '2023-07-28'
+        ];
+
+        function renderCalendar(month, year) {
+            const calendarDays = document.getElementById('calendar-days');
+            const monthYearDisplay = document.getElementById('current-month');
+            
+            // Clear previous calendar days
+            calendarDays.innerHTML = '';
+            
+            // Set month and year display
+            const monthNames = ["January", "February", "March", "April", "May", "June", 
+                               "July", "August", "September", "October", "November", "December"];
+            monthYearDisplay.textContent = `${monthNames[month]} ${year}`;
+            
+            // Get first day of month and total days in month
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            // Get days from previous month to display
+            const prevMonthDays = new Date(year, month, 0).getDate();
+            
+            // Create day elements
+            let day = 1;
+            let nextMonthDay = 1;
+            
+            // Create 6 rows (weeks) to ensure calendar has consistent height
+            for (let i = 0; i < 6; i++) {
+                // Break if we've rendered all days and we're not on first row
+                if (day > daysInMonth && i > 0) break;
+                
+                // Create row
+                for (let j = 0; j < 7; j++) {
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'calendar-day text-center py-3 rounded-lg';
+                    
+                    // Previous month days
+                    if (i === 0 && j < firstDay) {
+                        const prevDay = prevMonthDays - firstDay + j + 1;
+                        dayElement.textContent = prevDay;
+                        dayElement.classList.add('text-gray-400', 'disabled');
+                    } 
+                    // Current month days
+                    else if (day <= daysInMonth) {
+                        dayElement.textContent = day;
+                        
+                        // Format date for comparison
+                        const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                        const today = new Date();
+                        const isToday = today.getDate() === day && 
+                                        today.getMonth() === month && 
+                                        today.getFullYear() === year;
+                        
+                        // Check if date is in the past
+                        const dateObj = new Date(year, month, day);
+                        if (dateObj < new Date(today.getFullYear(), today.getMonth(), today.getDate())) {
+                            dayElement.classList.add('disabled', 'text-gray-400');
+                        } 
+                        // Check if date is booked
+                        else if (bookedDates.includes(formattedDate)) {
+                            dayElement.classList.add('booked', 'font-semibold');
+                            dayElement.title = 'Booked - Not Available';
+                        } 
+                        // Available date
+                        else {
+                            dayElement.classList.add('available', 'font-semibold');
+                            dayElement.title = 'Available for Booking';
+                            
+                            // Highlight today
+                            if (isToday) {
+                                dayElement.classList.add('ring-2', 'ring-green-500');
+                            }
+                        }
+                        
+                        day++;
+                    } 
+                    // Next month days
+                    else {
+                        dayElement.textContent = nextMonthDay;
+                        dayElement.classList.add('text-gray-400', 'disabled');
+                        nextMonthDay++;
+                    }
+                    
+                    calendarDays.appendChild(dayElement);
+                }
+            }
+        }
+
+        // Previous month button
+        document.getElementById('prev-month').addEventListener('click', function() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar(currentMonth, currentYear);
+        });
+
+        // Next month button
+        document.getElementById('next-month').addEventListener('click', function() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar(currentMonth, currentYear);
+        });
+
+        // Initialize calendar
+        renderCalendar(currentMonth, currentYear);
+
+        // Gallery modal functions
+        function openModal(imageSrc) {
+            const modal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            
+            modalImage.src = imageSrc;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('image-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside the image
+        document.getElementById('image-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
